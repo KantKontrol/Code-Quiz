@@ -1,7 +1,51 @@
 
+body{
+    background-image: url(images/prism.png);
+}
+
+a{
+    color: #4aaaa5;
+}
+
+.jumbo-pad {
+    padding: 10px;
+}
+
+.uniform-color {
+    background-color: #1d1616;
+    color: #4aaaa5;
+    border: 2px solid #4aaaa5;
+}
+
+.container-margin{
+    margin-top: 50px;
+}
+
+.cus-navbar{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 2px solid #4aaaa5;
+}
+
+.span-parent {
+    margin: auto 0;
+    width: max-content;
+}
+
+
 
 .timer{
     display: flex;
     float:right;
     
+}
+
+.cus-button {
+    margin: 5px;
+    
+}
+
+.cus-button:hover{
+    color: silver;
 }

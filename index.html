@@ -9,9 +9,6 @@
 
         <!-- Custom stylesheet -->
         <link rel="stylesheet" href="assets/style.css">
-
-        <!-- JQuery link-->
-        <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         
         <!-- My javascript-->
         <scipt src="assets/magic.js"></scipt>
@@ -20,7 +17,7 @@
     <body>
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg uniform-color cus-navbar">
             <a class="navbar-brand" href="#">Highscores</a>
             
             <div class="timer">Time: 0</div>
@@ -28,23 +25,31 @@
             </div>
         </nav>
 
-        <div class="container-sm">
+        <div class="container-sm container-margin">
             <div class="row">
                 <div class="col sm-6">
-                    <div class="jumbotron jumbotron-fluid">
+                    <div class="jumbotron jumbotron-fluid uniform-color">
                         <div class="container">
         
-                        <h1 class="display-4">Question</h1>
+                        <h1 class="display-5">Question</h1>
         
                             <div class="btn-group-vertical">    
-                                <button class="btn">Choice 1</button>
-                                <button class="btn">Choice 2</button>
-                                <button class="btn">Choice 3</button>
-                                <button class="btn">Choice 4</button>
+                                <button class="btn cus-button uniform-color">Choice 1</button>
+                                <button class="btn cus-button uniform-color">Choice 2</button>
+                                <button class="btn cus-button uniform-color">Choice 3</button>
+                                <button class="btn cus-button uniform-color">Choice 4</button>
                             </div>
                             
                         </div>
                     </div>
+
+                    <div class="jumbotron jumbotron-fluid uniform-color jumbo-pad justify-content-center">
+                        <h1 class="display-4">Code Quiz!</h1>
+                        <p class="lead">Welcome to the code quiz! Are you ready to test your JS knowledge?</p>
+                        <hr class="my-4">
+                        <p>Press START to begin the quiz!</p>
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Start</a>
+                      </div>
                 </div>
  
             </div>
