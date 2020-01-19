@@ -42,9 +42,14 @@ function startQuiz(){
     document.getElementById("intro").style.display = "none";
 
 
+}
+
+function loadQuestions(){
 
     
 
 }
+
+
 
 
