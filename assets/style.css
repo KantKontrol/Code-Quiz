@@ -35,9 +35,9 @@ a{
 
 
 
-.timer{
-    display: flex;
-    float:right;
+#timer{
+
+    font-size: 25px;
     
 }
 
