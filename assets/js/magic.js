@@ -19,6 +19,8 @@ var buttons = document.getElementsByClassName("qBtn");
 
 //hides quiz window to start
 document.getElementById("quiz").style.display = "none";
+//hides high score input
+//document.getElementById("hsInput").style.display = "none";
 
 
 document.getElementById("startBtn").addEventListener("click", function(){
@@ -42,7 +44,6 @@ function startQuizTimer(){
         }
 
         if(quizTime <= 0){
-            clearInterval(quizTimer);
             endQuiz();
         }
 
@@ -118,7 +119,7 @@ function loadQuestion(){
 
 }
 
-function getQuestion(){
+function getQuestion(){ //gets random question from qArray and removes it so it is not used again
 
     var ran = Math.floor(Math.random() * qArray.length);
 
@@ -157,10 +158,21 @@ function choseWrong(){
 }
 
 function endQuiz(){
+
+        //stops quiz timer
+        clearInterval(quizTimer);
+
+        quizTime = 60; //resets quiz time
+
+        timerDisplay.innerHTML = "Time: " + quizTime; //resets color and text of quiz timer
+        timerDisplay.style.color = "#4aaaa5";
+
         //hides quiz
         document.getElementById("quiz").style.display = "none";
         //displays intro -- later will have to be highscores
         document.getElementById("intro").style.display = "block";
+
+        
 }
 
 
