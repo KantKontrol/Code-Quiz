@@ -64,7 +64,7 @@ function addButtonListener(){
             var userChoice = event.target.innerHTML;
         
             if(userChoice == correctAnswer){
-                choseCorrect();
+                loadQuestion();
             }
             else if(userChoice != correctAnswer){
                 choseWrong();
@@ -128,10 +128,6 @@ function displayQuestion(question){
 
 
     console.log("display question");
-}
-
-function choseCorrect(){
-    loadQuestion();
 }
 
 function choseWrong(){
