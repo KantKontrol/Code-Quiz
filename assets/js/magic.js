@@ -53,11 +53,6 @@ function startQuiz(){
     addButtonListener();
     loadQuestion();
 
-        
-
-    
-
-
 }
 
 function addButtonListener(){
@@ -105,11 +100,15 @@ function loadQuestion(){
 
 function getQuestion(){
 
-    var ran = Math.floor(Math.random() * (qArray.length-1));
+    var ran = Math.floor(Math.random() * qArray.length);
+
+    if(ran > 0){
+        ran--;
+    }
 
     var newQuestion = qArray[ran];
-
-    qArray.splice(ran);
+    qArray.splice(ran, 1); //removes question from array so it is not used again
+    
     console.log("got question");
     return newQuestion;
 }
@@ -120,7 +119,7 @@ function displayQuestion(question){
     qDisplay.innerHTML = question.q;
 
     for(var i = 0;i < buttons.length;i++){
-        buttons[i].append(question.ans[i].choice);
+        buttons[i].innerHTML = question.ans[i].choice;
 
         if(question.ans[i].correct){
             correctAnswer = question.ans[i].choice;
@@ -132,7 +131,7 @@ function displayQuestion(question){
 }
 
 function choseCorrect(){
-
+    loadQuestion();
 }
 
 function choseWrong(){
