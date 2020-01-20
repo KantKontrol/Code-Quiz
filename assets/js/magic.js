@@ -16,6 +16,7 @@ var qDisplay = document.getElementById("qAsk");
 
 var buttons = document.getElementsByClassName("qBtn");
 
+addButtonListener(); //adds listeners to qBtns
 
 //hides quiz window to start
 document.getElementById("quiz").style.display = "none";
@@ -25,7 +26,6 @@ document.getElementById("quiz").style.display = "none";
 
 document.getElementById("startBtn").addEventListener("click", function(){
     startQuiz();
-
 });
 
 function startQuizTimer(){
@@ -33,6 +33,8 @@ function startQuizTimer(){
     quizTime = 60;
 
     quizTimer = setInterval(function(){
+
+        quizTime--;
 
         timerDisplay.innerHTML = "Time: " + quizTime;
 
@@ -47,7 +49,7 @@ function startQuizTimer(){
             endQuiz();
         }
 
-        quizTime--;
+        console.log("quiz time " + quizTime);
 
     }, 1000);
 }
@@ -65,7 +67,6 @@ function startQuiz(){
 
     setQuestionArray();
     startQuizTimer();
-    addButtonListener();
     loadQuestion();
 
 }
@@ -108,14 +109,9 @@ function loadQuestion(){
             displayQuestion(currentQuestion);
 
             gotQuestion = true;
-            console.log("not used");
         }
         
-        
-        console.log("loading question");
     }
-
-
 
 }
 
@@ -146,15 +142,13 @@ function displayQuestion(question){
             correctAnswer = question.ans[i].choice;
         }
     }
-
-
-    console.log("display question");
 }
 
 function choseWrong(){
 
     quizTime-=penalty; //apllies penalty to time for answering incorrectly
     timerDisplay.innerHTML = "Time: " + quizTime;
+    console.log("applied penalty!" + penalty);
 }
 
 function endQuiz(){
