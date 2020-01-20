@@ -14,13 +14,8 @@ var qDisplay = document.getElementById("qAsk");
 var buttons = document.getElementsByClassName("qBtn");
 
 
-
-
-//hide quiz
+//hides quiz window to start
 document.getElementById("quiz").style.display = "none";
-
-
-
 
 
 document.getElementById("startBtn").addEventListener("click", function(){
@@ -74,10 +69,10 @@ function addButtonListener(){
             var userChoice = event.target.innerHTML;
         
             if(userChoice == correctAnswer){
-                console.log("Correct Choice!");
+                choseCorrect();
             }
             else if(userChoice != correctAnswer){
-                console.log("Wrong Answer!");
+                choseWrong();
             }
     
         })
@@ -111,8 +106,12 @@ function loadQuestion(){
 function getQuestion(){
 
     var ran = Math.floor(Math.random() * (qArray.length-1));
+
+    var newQuestion = qArray[ran];
+
+    qArray.splice(ran);
     console.log("got question");
-    return qArray[ran];
+    return newQuestion;
 }
 
 function displayQuestion(question){
@@ -130,6 +129,14 @@ function displayQuestion(question){
 
 
     console.log("display question");
+}
+
+function choseCorrect(){
+
+}
+
+function choseWrong(){
+
 }
 
 
