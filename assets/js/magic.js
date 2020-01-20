@@ -3,7 +3,7 @@
 var timerDisplay = document.getElementById("timer");
 var quizTimer;
 
-var quizNotComplete;
+var quizOver;
 var currentQuestion;
 var correctAnswer;
 
@@ -49,6 +49,8 @@ function startQuiz(){
     //hides intro
     document.getElementById("intro").style.display = "none";
 
+    quizOver = false;
+
     startQuizTimer();
     addButtonListener();
     loadQuestion();
@@ -82,7 +84,11 @@ function loadQuestion(){
 
         currentQuestion = getQuestion();
 
-        if(!currentQuestion.used){
+        if(currentQuestion === undefined){
+            quizOver = true;
+            endQuiz();
+        }
+        else if(!currentQuestion.used){
 
             displayQuestion(currentQuestion);
 
@@ -132,6 +138,10 @@ function displayQuestion(question){
 
 function choseWrong(){
 
+}
+
+function endQuiz(){
+    
 }
 
 
