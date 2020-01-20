@@ -85,6 +85,7 @@ function loadQuestion(){
         currentQuestion = getQuestion();
 
         if(currentQuestion === undefined){
+            gotQuestion = true;
             quizOver = true;
             endQuiz();
         }
@@ -141,7 +142,10 @@ function choseWrong(){
 }
 
 function endQuiz(){
-    
+        //hides quiz
+        document.getElementById("quiz").style.display = "none";
+        //displays intro -- later will have to be highscores
+        document.getElementById("intro").style.display = "block";
 }
 
 
