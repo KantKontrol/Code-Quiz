@@ -42,10 +42,13 @@ a{
 }
 
 .cus-button {
-    margin: 5px;
-    
+    margin: 10px;
+    transition: none;
 }
 
-.cus-button:hover{
+.cus-button:hover{ /* button grow idea and code from: https://www.webdesignerdepot.com/2014/05/8-simple-css3-transitions-that-will-wow-your-users/*/
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
     color: silver;
 }

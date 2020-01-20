@@ -3,9 +3,12 @@
 var timerDisplay = document.getElementById("timer");
 var quizTimer;
 
-var quizOver;
+var quizOver = false;
 var currentQuestion;
 var correctAnswer;
+var penalty = 10;
+var showWrong = false;
+var wrongButton;
 
 var quizTime = 60;
 
@@ -31,8 +34,16 @@ function startQuizTimer(){
 
         timerDisplay.innerHTML = "Time: " + quizTime;
 
-        if(quizTime == 0){
+        if(showWrong){
+            timerDisplay.style.color = "red";
+            showWrong = false;
+        }else{
+            timerDisplay.style.color = "#4aaaa5";
+        }
+
+        if(quizTime <= 0){
             clearInterval(quizTimer);
+            endQuiz();
         }
 
         quizTime--;
@@ -51,6 +62,7 @@ function startQuiz(){
 
     quizOver = false;
 
+    setQuestionArray();
     startQuizTimer();
     addButtonListener();
     loadQuestion();
@@ -70,6 +82,7 @@ function addButtonListener(){
             }
             else if(userChoice != correctAnswer){
                 choseWrong();
+                showWrong = true;
             }
     
         })
@@ -84,9 +97,9 @@ function loadQuestion(){
 
         currentQuestion = getQuestion();
 
+    
         if(currentQuestion === undefined){
             gotQuestion = true;
-            quizOver = true;
             endQuiz();
         }
         else if(!currentQuestion.used){
@@ -139,6 +152,8 @@ function displayQuestion(question){
 
 function choseWrong(){
 
+    quizTime-=penalty; //apllies penalty to time for answering incorrectly
+    timerDisplay.innerHTML = "Time: " + quizTime;
 }
 
 function endQuiz(){

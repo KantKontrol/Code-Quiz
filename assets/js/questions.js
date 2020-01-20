@@ -30,7 +30,13 @@ var question3 = {
 
 var qArray = [];
 
-for(var i = 1; window["question" + i] !== undefined;i++){
-    qArray.push(window["question" + i]);
+function setQuestionArray(){
+    for(var i = 1; window["question" + i] !== undefined;i++){
+        qArray.push(window["question" + i]);
+    }
 }
+
+
+
+
 
