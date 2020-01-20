@@ -21,7 +21,7 @@ addButtonListener(); //adds listeners to qBtns
 //hides quiz window to start
 document.getElementById("quiz").style.display = "none";
 //hides high score input
-//document.getElementById("hsInput").style.display = "none";
+document.getElementById("hsInput").style.display = "none";
 
 
 document.getElementById("startBtn").addEventListener("click", function(){
@@ -56,8 +56,6 @@ function startQuizTimer(){
 
 function startQuiz(){
 
-    
-
     //displays quiz
     document.getElementById("quiz").style.display = "block";
     //hides intro
@@ -68,7 +66,6 @@ function startQuiz(){
     setQuestionArray();
     startQuizTimer();
     loadQuestion();
-
 }
 
 function addButtonListener(){
@@ -164,9 +161,7 @@ function endQuiz(){
         //hides quiz
         document.getElementById("quiz").style.display = "none";
         //displays intro -- later will have to be highscores
-        document.getElementById("intro").style.display = "block";
-
-        
+        document.getElementById("hsInput").style.display = "block";
 }
 
 
