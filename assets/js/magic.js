@@ -1,4 +1,4 @@
-//TODO: add time with high scores
+//TODO:
 //make highscores neater and display nicer 
 //add button to remove highscores?
 //add more questions
@@ -17,6 +17,8 @@ var correctAnswer;
 var penalty = 10;
 var showWrong = false;
 var wrongButton;
+
+var endTime = -1;
 
 
 var hsUsers = JSON.parse(window.localStorage.getItem('highscores'));
@@ -62,7 +64,10 @@ document.getElementById("button-addon2").addEventListener("click", function(){
 
    document.getElementById("input").value = "";
 
-   hsUsers.push(username);
+   hsUsers.push(user = {
+       name: username,
+       time: endTime
+   });
 
    window.localStorage.setItem('highscores', JSON.stringify(hsUsers));
 
@@ -196,6 +201,8 @@ function endQuiz(){
 
         quizOver = true;
 
+        endTime = quizTime;
+
         quizTime = 60; //resets quiz time
 
         timerDisplay.innerHTML = "Time: " + quizTime; //resets color and text of quiz timer
@@ -227,7 +234,7 @@ function loadHighScores(){
 
         div.setAttribute("class",  "uniform-color highscore-bar");
 
-        div.innerHTML = hsUsers[i];
+        div.innerHTML = hsUsers[i].name + " Time: " + hsUsers[i].time;
 
         document.getElementById("highscores").childNodes[3].appendChild(div);
     }
