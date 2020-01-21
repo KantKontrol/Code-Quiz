@@ -135,6 +135,12 @@ function addButtonListener(){
     }
 }
 
+function setQuestionArray(){
+    for(var i = 1; window["question" + i] !== undefined;i++){
+        qArray.push(window["question" + i]);
+    }
+}
+
 function loadQuestion(){
 
     var gotQuestion = false;
@@ -238,6 +244,8 @@ function loadHighScores(){
 
     
 }
+
+
 
 
 
