@@ -1,3 +1,10 @@
+//TODO: add time with high scores
+//make highscores neater and display nicer 
+//add button to remove highscores?
+//add more questions
+//clean up dry code
+//add music?
+//add sound effects for right and wrong answers?
 
 
 var timerDisplay = document.getElementById("timer");
