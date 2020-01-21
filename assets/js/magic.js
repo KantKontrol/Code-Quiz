@@ -2,6 +2,7 @@
 
 var timerDisplay = document.getElementById("timer");
 var quizTimer;
+var quizTime = 60;
 
 var quizOver = false;
 var currentQuestion;
@@ -10,7 +11,9 @@ var penalty = 10;
 var showWrong = false;
 var wrongButton;
 
-var quizTime = 60;
+
+var hsUsers = [];
+
 
 var qDisplay = document.getElementById("qAsk");
 
@@ -22,10 +25,32 @@ addButtonListener(); //adds listeners to qBtns
 document.getElementById("quiz").style.display = "none";
 //hides high score input
 document.getElementById("hsInput").style.display = "none";
+//hides highscores page
+document.getElementById("highscores").style.display = "none";
 
 
 document.getElementById("startBtn").addEventListener("click", function(){
     startQuiz();
+});
+
+document.getElementById("navHighscores").addEventListener("click", function(){
+    loadHighScores();
+
+});
+
+document.getElementById("return").addEventListener("click", function(){
+    document.getElementById("highscores").style.display = "none";
+    document.getElementById("intro").style.display = "block";
+});
+
+document.getElementById("button-addon2").addEventListener("click", function(){
+   var username = document.getElementById("input").value;
+
+   document.getElementById("input").value = "";
+
+   hsUsers.push(username);
+
+    loadHighScores();
 });
 
 function startQuizTimer(){
@@ -162,6 +187,30 @@ function endQuiz(){
         document.getElementById("quiz").style.display = "none";
         //displays intro -- later will have to be highscores
         document.getElementById("hsInput").style.display = "block";
+}
+
+function loadHighScores(){
+
+    //hides input and shows scores
+    //hides quiz window to start
+    //hides quiz window to start
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("hsInput").style.display = "none";
+    document.getElementById("highscores").style.display = "block";
+
+
+    hsUsers
+
+    for(var i = 0;i < hsUsers.length;i++){
+        var li = document.createElement("li");
+
+        li.innerHTML = hsUsers[i];
+
+        document.getElementById("highscores").firstElementChild.appendChild(li);
+    }
+
+    
 }
 
 

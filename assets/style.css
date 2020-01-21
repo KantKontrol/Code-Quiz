@@ -17,6 +17,9 @@ a{
     border: 2px solid #4aaaa5;
 }
 
+.container-padding{
+    padding: 5px;
+}
 
 .container-margin{
     margin-top: 50px;
