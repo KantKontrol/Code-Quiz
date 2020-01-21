@@ -4,7 +4,7 @@ var timerDisplay = document.getElementById("timer");
 var quizTimer;
 var quizTime = 60;
 
-var quizOver = false;
+var quizOver = true;
 var currentQuestion;
 var correctAnswer;
 var penalty = 10;
@@ -12,7 +12,11 @@ var showWrong = false;
 var wrongButton;
 
 
-var hsUsers = [];
+var hsUsers = JSON.parse(window.localStorage.getItem('highscores'));
+
+if(hsUsers == null){ //incase item doesnt exist in local storage
+    hsUsers = [];
+}
 
 
 var qDisplay = document.getElementById("qAsk");
@@ -34,8 +38,11 @@ document.getElementById("startBtn").addEventListener("click", function(){
 });
 
 document.getElementById("navHighscores").addEventListener("click", function(){
-    loadHighScores();
 
+    if(quizOver){
+        loadHighScores();
+    }
+    
 });
 
 document.getElementById("return").addEventListener("click", function(){
@@ -49,6 +56,8 @@ document.getElementById("button-addon2").addEventListener("click", function(){
    document.getElementById("input").value = "";
 
    hsUsers.push(username);
+
+   window.localStorage.setItem('highscores', JSON.stringify(hsUsers));
 
     loadHighScores();
 });
@@ -178,6 +187,8 @@ function endQuiz(){
         //stops quiz timer
         clearInterval(quizTimer);
 
+        quizOver = true;
+
         quizTime = 60; //resets quiz time
 
         timerDisplay.innerHTML = "Time: " + quizTime; //resets color and text of quiz timer
@@ -199,15 +210,19 @@ function loadHighScores(){
     document.getElementById("hsInput").style.display = "none";
     document.getElementById("highscores").style.display = "block";
 
+    document.getElementById("highscores").childNodes[3].innerHTML = "";
 
-    hsUsers
+    console.log( document.getElementById("highscores").childNodes[3]);
+    
 
     for(var i = 0;i < hsUsers.length;i++){
-        var li = document.createElement("li");
+        var div = document.createElement("div");
 
-        li.innerHTML = hsUsers[i];
+        div.setAttribute("class",  "uniform-color");
 
-        document.getElementById("highscores").firstElementChild.appendChild(li);
+        div.innerHTML = hsUsers[i];
+
+        document.getElementById("highscores").childNodes[3].appendChild(div);
     }
 
     
