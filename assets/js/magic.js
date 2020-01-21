@@ -19,6 +19,12 @@ var penalty = 10;
 var showWrong = false;
 var wrongButton;
 
+var gameObj = {
+    qs: [],
+    over: false,
+    time: 0
+}
+
 var endTime = -1;
 
 
@@ -49,7 +55,7 @@ document.getElementById("startBtn").addEventListener("click", function(){
 
 document.getElementById("navHighscores").addEventListener("click", function(){
 
-    if(quizOver){
+    if(gameObj.over){
         loadHighScores();
     }
     
@@ -108,9 +114,10 @@ function startQuiz(){
     //hides intro
     document.getElementById("intro").style.display = "none";
 
-    quizOver = false;
+    gameObj.over = false;
 
     setQuestionArray();
+    makeGameObject();
     startQuizTimer();
     loadQuestion();
 }
@@ -139,6 +146,20 @@ function setQuestionArray(){
     for(var i = 1; window["question" + i] !== undefined;i++){
         qArray.push(window["question" + i]);
     }
+}
+
+function makeGameObject(){
+
+    let obj = {}; //creates empty object
+    console.log(qArray);
+
+    for(var i = 0;i < qArray.length;i++){
+        let cloneQObj = Object.assign({}, qArray[i]); //clones question object in qArray and stores it in gameobjec array
+        gameObj.qs.push(cloneQObj);
+    }
+
+    console.log("gameObj array: " + gameObj.qs[0].q); //this is how you grab a question and answer
+
 }
 
 function loadQuestion(){
@@ -173,6 +194,22 @@ function getQuestion(){ //gets random question from qArray and removes it so it 
     qArray.splice(ran, 1); //removes question from array so it is not used again
     
     console.log("got question");
+
+    let gotQuestion = false;
+
+    while(!gotQuestion){ //began adding code to manage gameObject
+
+        var ran = Math.floor(Math.random() * (gameObj.qs.length-1));
+
+        var newQuestion = gameObj.qs[ran];
+
+        if(newQuestion.used == false){
+            newQuestion.used = true;
+            gotQuestion = true;
+            return newQuestion;
+        }
+    }
+
     return newQuestion;
 }
 
@@ -202,7 +239,7 @@ function endQuiz(){
         //stops quiz timer
         clearInterval(quizTimer);
 
-        quizOver = true;
+        gameObj.over = true;
 
         endTime = quizTime;
 
