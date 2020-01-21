@@ -54,3 +54,12 @@ a{
     transform: scale(1.2);
     color: silver;
 }
+
+.highscore-bar {
+    
+    width: max-content;
+    font-size: large;
+    text-align: center;
+    padding: 4px;
+    border: none;
+}

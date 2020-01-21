@@ -218,7 +218,7 @@ function loadHighScores(){
     for(var i = 0;i < hsUsers.length;i++){
         var div = document.createElement("div");
 
-        div.setAttribute("class",  "uniform-color");
+        div.setAttribute("class",  "uniform-color highscore-bar");
 
         div.innerHTML = hsUsers[i];
 
