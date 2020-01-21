@@ -1,4 +1,5 @@
 //TODO:
+//redo the way questions are pulled, game object
 //make highscores neater and display nicer 
 //add button to remove highscores?
 //add more questions
@@ -160,11 +161,7 @@ function loadQuestion(){
 
 function getQuestion(){ //gets random question from qArray and removes it so it is not used again
 
-    var ran = Math.floor(Math.random() * qArray.length);
-
-    if(ran > 0){
-        ran--;
-    }
+    var ran = Math.floor(Math.random() * (qArray.length-1));
 
     var newQuestion = qArray[ran];
     qArray.splice(ran, 1); //removes question from array so it is not used again
