@@ -195,7 +195,7 @@ function getQuestion(){ //gets random question from qArray and removes it so it 
     
     console.log("got question");
 
-    let gotQuestion = false;
+   /* let gotQuestion = false; BROKEN FREEZES PAGE
 
     while(!gotQuestion){ //began adding code to manage gameObject
 
@@ -208,7 +208,7 @@ function getQuestion(){ //gets random question from qArray and removes it so it 
             gotQuestion = true;
             return newQuestion;
         }
-    }
+    }*/
 
     return newQuestion;
 }
