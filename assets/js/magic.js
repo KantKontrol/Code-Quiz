@@ -249,7 +249,7 @@ function loadHighScores(){
 
         div.setAttribute("class",  "uniform-color highscore-bar");
 
-        div.innerHTML = hsUsers[i].name + " Completed: " + hsUsers[i].qComplete + " in " + hsUsers[i].time + " seconds";
+        div.innerHTML = "--> " + hsUsers[i].name + " Completed: " + hsUsers[i].qComplete + " in " + hsUsers[i].time + " seconds";
 
         document.getElementById("highscores").childNodes[3].appendChild(div);
     }
