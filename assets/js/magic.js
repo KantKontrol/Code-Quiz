@@ -1,5 +1,4 @@
 //TODO:
-//redo the way questions are pulled, game object
 //make highscores neater and display nicer 
 //add button to remove highscores?
 //add more questions
@@ -35,7 +34,6 @@ if(hsUsers == null){ //incase item doesnt exist in local storage
     hsUsers = [];
 }
 
-
 var qDisplay = document.getElementById("qAsk");
 
 var buttons = document.getElementsByClassName("qBtn");
@@ -43,13 +41,7 @@ var buttons = document.getElementsByClassName("qBtn");
 addButtonListener(); //adds listeners to qBtns
 setQuestionArray(); //puts questions from question.js into array
 
-//hides quiz window to start
-document.getElementById("quiz").style.display = "none";
-//hides high score input
-document.getElementById("hsInput").style.display = "none";
-//hides highscores page
-document.getElementById("highscores").style.display = "none";
-
+displayThis(true, false, false, false);
 
 document.getElementById("startBtn").addEventListener("click", function(){
     startQuiz();
@@ -64,21 +56,22 @@ document.getElementById("navHighscores").addEventListener("click", function(){
 });
 
 document.getElementById("return").addEventListener("click", function(){
-    document.getElementById("highscores").style.display = "none";
-    document.getElementById("intro").style.display = "block";
+    displayThis(intro, false, false, false);
 });
 
 document.getElementById("button-addon2").addEventListener("click", function(){
-   var username = document.getElementById("input").value;
+    var username = document.getElementById("input").value;
 
-   document.getElementById("input").value = "";
+    document.getElementById("input").value = "";
 
-   hsUsers.push(user = {
-       name: username,
-       time: endTime
-   });
+    hsUsers.push(user = {
 
-   window.localStorage.setItem('highscores', JSON.stringify(hsUsers));
+    name: username,
+    time: endTime
+
+    });
+
+    window.localStorage.setItem('highscores', JSON.stringify(hsUsers));
 
     loadHighScores();
 });
@@ -104,17 +97,12 @@ function startQuizTimer(){
             endQuiz();
         }
 
-        console.log("quiz time " + quizTime);
-
     }, 1000);
 }
 
 function startQuiz(){
 
-    //displays quiz
-    document.getElementById("quiz").style.display = "block";
-    //hides intro
-    document.getElementById("intro").style.display = "none";
+    displayThis(false, true, false, false);
 
     gameObj.over = false;
 
@@ -165,8 +153,6 @@ function makeGameObject(){
 
         insertToGame(cloneQObj);  
     }
-
-    console.log("gameObj array: " + gameObj.qs); //this is how you grab a question and answer
 }
 
 function insertToGame(obj){ //inserts obj to gameObj array at random empty index
@@ -219,7 +205,6 @@ function displayQuestion(question){
 
         if(question.ans[i].correct){
             correctAnswer = question.ans[i].choice;
-            console.log(correctAnswer);
         }
     }
 }
@@ -228,7 +213,6 @@ function choseWrong(){
 
     quizTime-=penalty; //apllies penalty to time for answering incorrectly
     timerDisplay.innerHTML = "Time: " + quizTime;
-    console.log("applied penalty!" + penalty);
 }
 
 function endQuiz(){
@@ -247,10 +231,8 @@ function endQuiz(){
         timerDisplay.innerHTML = "Time: " + quizTime; //resets color and text of quiz timer
         timerDisplay.style.color = "#4aaaa5";
 
-        //hides quiz
-        document.getElementById("quiz").style.display = "none";
-        //displays intro -- later will have to be highscores
-        document.getElementById("hsInput").style.display = "block";
+
+        displayThis(false, false, true, false);
 }
 
 function loadHighScores(){
@@ -258,15 +240,9 @@ function loadHighScores(){
     //hides input and shows scores
     //hides quiz window to start
     //hides quiz window to start
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("hsInput").style.display = "none";
-    document.getElementById("highscores").style.display = "block";
+    displayThis(false, false, false, true);
 
     document.getElementById("highscores").childNodes[3].innerHTML = "";
-
-    console.log( document.getElementById("highscores").childNodes[3]);
-    
 
     for(var i = 0;i < hsUsers.length;i++){
         var div = document.createElement("div");
@@ -277,8 +253,37 @@ function loadHighScores(){
 
         document.getElementById("highscores").childNodes[3].appendChild(div);
     }
+}
 
-    
+function displayThis(intro, quiz, input, highscores){
+
+    if(intro){
+        document.getElementById("intro").style.display = "none";
+    }
+    else{
+        document.getElementById("intro").style.display = "block";
+    }
+
+    if(quiz){
+        document.getElementById("quiz").style.display = "none";
+    }
+    else{
+        document.getElementById("quiz").style.display = "block";
+    }
+
+    if(input){
+        document.getElementById("hsInput").style.display = "none";
+    }
+    else{
+        document.getElementById("hsInput").style.display = "block";
+    }
+
+    if(highscores){
+        document.getElementById("highscores").style.display = "none";
+    }
+    else{
+        document.getElementById("highscores").style.display = "block";
+    }
 }
 
 
