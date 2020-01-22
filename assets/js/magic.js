@@ -2,7 +2,6 @@
 //make highscores neater and display nicer 
 //add button to remove highscores?
 //add more questions
-//clean up dry code
 //add music?
 //add sound effects for right and wrong answers?
 
@@ -15,7 +14,6 @@ var quizOver = true;
 var questionNumber = 0;
 var currentQuestion;
 var correctAnswer;
-var penalty = 10;
 var showWrong = false;
 var wrongButton;
 
@@ -26,7 +24,6 @@ var gameObj = {
 }
 
 var endTime = -1;
-
 
 var hsUsers = JSON.parse(window.localStorage.getItem('highscores'));
 
@@ -51,8 +48,7 @@ document.getElementById("navHighscores").addEventListener("click", function(){
 
     if(gameObj.over){
         loadHighScores();
-    }
-    
+    }  
 });
 
 document.getElementById("return").addEventListener("click", function(){
@@ -66,8 +62,8 @@ document.getElementById("button-addon2").addEventListener("click", function(){
 
     hsUsers.push(user = {
 
-    name: username,
-    time: endTime
+        name: username,
+        time: endTime
 
     });
 
@@ -211,13 +207,13 @@ function displayQuestion(question){
 
 function choseWrong(){
 
+    let penalty = 10;
     quizTime-=penalty; //apllies penalty to time for answering incorrectly
     timerDisplay.innerHTML = "Time: " + quizTime;
 }
 
 function endQuiz(){
 
-        //stops quiz timer
         clearInterval(quizTimer);
 
         gameObj.over = true;
@@ -231,16 +227,12 @@ function endQuiz(){
         timerDisplay.innerHTML = "Time: " + quizTime; //resets color and text of quiz timer
         timerDisplay.style.color = "#4aaaa5";
 
-
-        displayThis("none", "none", "block", "none");
+        displayThis("none", "none", "block", "none"); //hides un-wanted windows
 }
 
 function loadHighScores(){
 
-    //hides input and shows scores
-    //hides quiz window to start
-    //hides quiz window to start
-    displayThis("none", "none", "none", "block");
+    displayThis("none", "none", "none", "block"); //hides un-wanted windows
 
     document.getElementById("highscores").childNodes[3].innerHTML = "";
 
