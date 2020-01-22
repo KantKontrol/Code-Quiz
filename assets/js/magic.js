@@ -22,6 +22,7 @@ var gameObj = {
     time: 0
 }
 
+var username = "";
 var endTime = -1;
 var questionsCompleted = 0;
 
@@ -62,17 +63,21 @@ document.getElementById("resetScore").addEventListener("click", function(){
 });
 
 document.getElementById("button-addon2").addEventListener("click", function(){
-    var username = document.getElementById("input").value;
+
+    username = document.getElementById("input").value;
 
     document.getElementById("input").value = "";
 
-    hsUsers.push(user = {
+    if(username != ""){
+        hsUsers.push(user = {
 
-        name: username,
-        time: endTime,
-        qComplete: questionsCompleted
+            name: username,
+            time: endTime,
+            qComplete: questionsCompleted
+    
+        });
+    }
 
-    });
 
     window.localStorage.setItem('highscores', JSON.stringify(hsUsers));
 
@@ -241,7 +246,7 @@ function endQuiz(){
 function loadHighScores(){
 
     displayThis("none", "none", "none", "block"); //hides un-wanted windows
-
+    
     document.getElementById("highscores").childNodes[3].innerHTML = "";
 
     for(var i = 0;i < hsUsers.length;i++){
