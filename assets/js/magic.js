@@ -151,15 +151,34 @@ function setQuestionArray(){
 function makeGameObject(){
 
     let obj = {}; //creates empty object
-    console.log(qArray);
 
-    for(var i = 0;i < qArray.length;i++){
-        let cloneQObj = Object.assign({}, qArray[i]); //clones question object in qArray and stores it in gameobjec array
-        gameObj.qs.push(cloneQObj);
+    for(var i = 0;i < qArray.length;i++){ //fills gameObj array with empty spaces according to how many questions there are
+        gameObj.qs[i] = "empty";
     }
 
-    console.log("gameObj array: " + gameObj.qs[0].q); //this is how you grab a question and answer
+    for(var i = 0;i < qArray.length;i++){
 
+        let cloneQObj = Object.assign({}, qArray[i]); //clones question object in qArray and stores it in gameobjec array
+
+        insertToGame(cloneQObj);  
+    }
+
+    console.log("gameObj array: " + gameObj.qs); //this is how you grab a question and answer
+}
+
+function insertToGame(obj){ //inserts obj to gameObj array at random empty index
+
+    var inserted = false;
+
+    while(!inserted){
+
+        var ranIndex = Math.floor(Math.random() * (gameObj.qs.length));
+
+        if(gameObj.qs[ranIndex] == "empty"){
+            gameObj.qs[ranIndex] = obj;
+            inserted = true;
+        }
+    }
 }
 
 function loadQuestion(){
