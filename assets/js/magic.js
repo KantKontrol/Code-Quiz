@@ -40,6 +40,7 @@ var qDisplay = document.getElementById("qAsk");
 var buttons = document.getElementsByClassName("qBtn");
 
 addButtonListener(); //adds listeners to qBtns
+setQuestionArray(); //puts questions from question.js into array
 
 //hides quiz window to start
 document.getElementById("quiz").style.display = "none";
@@ -116,7 +117,6 @@ function startQuiz(){
 
     gameObj.over = false;
 
-    setQuestionArray();
     makeGameObject();
     startQuizTimer();
     loadQuestion();
@@ -164,57 +164,43 @@ function makeGameObject(){
 
 function loadQuestion(){
 
-    var gotQuestion = false;
-
-    while(!gotQuestion){
-
         currentQuestion = getQuestion();
-
     
-        if(currentQuestion === undefined){
-            gotQuestion = true;
+        if(currentQuestion == false){ //no question available
             endQuiz();
         }
         else if(!currentQuestion.used){
-
             displayQuestion(currentQuestion);
-
-            gotQuestion = true;
         }
-        
-    }
-
 }
 
 function getQuestion(){ //gets random question from qArray and removes it so it is not used again
-
-    var ran = Math.floor(Math.random() * (qArray.length-1));
-
-    var newQuestion = qArray[ran];
-    qArray.splice(ran, 1); //removes question from array so it is not used again
     
-    console.log("got question");
+    let gotQuestion = false; 
 
-   /* let gotQuestion = false; BROKEN FREEZES PAGE
+    let gameQuestions = gameObj.qs;
 
-    while(!gotQuestion){ //began adding code to manage gameObject
+    while(!gotQuestion){
 
-        var ran = Math.floor(Math.random() * (gameObj.qs.length-1));
+        if(gameQuestions.length != 0){
+            var ran = Math.floor(Math.random() * (gameQuestions.length-1));
 
-        var newQuestion = gameObj.qs[ran];
+            var newQuestion = gameObj.qs[ran];
+            gameObj.qs.splice(ran, 1);
 
-        if(newQuestion.used == false){
-            newQuestion.used = true;
             gotQuestion = true;
-            return newQuestion;
         }
-    }*/
+        else if(gameQuestions.length == 0){
+            gotQuestion = true;
+            return false;
+        }
+    }
 
+    console.log("got question");
     return newQuestion;
 }
 
 function displayQuestion(question){
-
 
     qDisplay.innerHTML = question.q;
 
