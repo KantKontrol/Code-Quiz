@@ -63,3 +63,11 @@ a{
     padding: 4px;
     border: none;
 }
+
+.hsButton:hover {
+    color: silver;
+}
+
+.sameHeight {
+    height: 40px;
+}

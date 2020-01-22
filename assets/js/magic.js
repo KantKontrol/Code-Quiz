@@ -10,7 +10,6 @@ var timerDisplay = document.getElementById("timer");
 var quizTimer;
 var quizTime = 60;
 
-var quizOver = true;
 var questionNumber = 0;
 var currentQuestion;
 var correctAnswer;
@@ -19,7 +18,7 @@ var wrongButton;
 
 var gameObj = {
     qs: [],
-    over: false,
+    over: true,
     time: 0
 }
 
@@ -53,6 +52,12 @@ document.getElementById("navHighscores").addEventListener("click", function(){
 
 document.getElementById("return").addEventListener("click", function(){
     displayThis("block", "none", "none", "none");
+});
+
+document.getElementById("resetScore").addEventListener("click", function(){
+    hsUsers = [];
+    window.localStorage.setItem('highscores', JSON.stringify(hsUsers));
+    loadHighScores();
 });
 
 document.getElementById("button-addon2").addEventListener("click", function(){
