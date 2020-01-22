@@ -57,10 +57,10 @@ var question6 = {
 
 var question7 = {
     q: "Inside which HTML element do we put the JavaScript?",
-    ans : [ { choice: "1) <js>", correct: false },
-            { choice: "2) <scripting>", correct: false },
-            { choice: "3) <script>", correct: true},
-            { choice: "4) <javascript>", correct: false}],
+    ans : [ { choice: "1) 'js'", correct: false },
+            { choice: "2) 'scripting'", correct: false },
+            { choice: "3) 'script'", correct: true},
+            { choice: "4) 'javascript'", correct: false}],
     used: false
 }
 

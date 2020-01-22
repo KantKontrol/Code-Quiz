@@ -23,6 +23,7 @@ var gameObj = {
 }
 
 var endTime = -1;
+var questionsCompleted = 0;
 
 var hsUsers = JSON.parse(window.localStorage.getItem('highscores'));
 
@@ -68,7 +69,8 @@ document.getElementById("button-addon2").addEventListener("click", function(){
     hsUsers.push(user = {
 
         name: username,
-        time: endTime
+        time: endTime,
+        qComplete: questionsCompleted
 
     });
 
@@ -174,8 +176,6 @@ function insertToGame(obj){ //inserts obj to gameObj array at random empty index
 function loadQuestion(){
 
         currentQuestion = getQuestion(questionNumber);
-
-        questionNumber++;
     
         if(currentQuestion == false){ //no question available
             endQuiz();
@@ -190,6 +190,7 @@ function getQuestion(num){ //gets random question from qArray and removes it so 
     let gameQuestions = gameObj.qs;
 
     if(questionNumber != gameQuestions.length){
+        questionNumber++;
         return gameQuestions[num];
     }
     else{
@@ -223,6 +224,8 @@ function endQuiz(){
 
         gameObj.over = true;
 
+        questionsCompleted = questionNumber + "/" + gameObj.qs.length; //sets questions completed out of the amount of questions
+
         questionNumber = 0; //resets current question to start
 
         endTime = quizTime;//stores where the user ended quiz
@@ -246,7 +249,7 @@ function loadHighScores(){
 
         div.setAttribute("class",  "uniform-color highscore-bar");
 
-        div.innerHTML = hsUsers[i].name + " Time: " + hsUsers[i].time;
+        div.innerHTML = hsUsers[i].name + " Completed: " + hsUsers[i].qComplete + " in " + hsUsers[i].time + " seconds";
 
         document.getElementById("highscores").childNodes[3].appendChild(div);
     }
