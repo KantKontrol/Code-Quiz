@@ -13,6 +13,7 @@ var quizTimer;
 var quizTime = 60;
 
 var quizOver = true;
+var questionNumber = 0;
 var currentQuestion;
 var correctAnswer;
 var penalty = 10;
@@ -129,6 +130,8 @@ function addButtonListener(){
         buttons[i].addEventListener("click", function(){
 
             var userChoice = event.target.innerHTML;
+
+            console.log(event.target.innerHTML);
         
             if(userChoice == correctAnswer){
                 loadQuestion();
@@ -183,40 +186,28 @@ function insertToGame(obj){ //inserts obj to gameObj array at random empty index
 
 function loadQuestion(){
 
-        currentQuestion = getQuestion();
+        currentQuestion = getQuestion(questionNumber);
+
+        questionNumber++;
     
         if(currentQuestion == false){ //no question available
             endQuiz();
         }
-        else if(!currentQuestion.used){
+        else {
             displayQuestion(currentQuestion);
         }
 }
 
-function getQuestion(){ //gets random question from qArray and removes it so it is not used again
-    
-    let gotQuestion = false; 
+function getQuestion(num){ //gets random question from qArray and removes it so it is not used again
 
     let gameQuestions = gameObj.qs;
 
-    while(!gotQuestion){
-
-        if(gameQuestions.length != 0){
-            var ran = Math.floor(Math.random() * (gameQuestions.length-1));
-
-            var newQuestion = gameObj.qs[ran];
-            gameObj.qs.splice(ran, 1);
-
-            gotQuestion = true;
-        }
-        else if(gameQuestions.length == 0){
-            gotQuestion = true;
-            return false;
-        }
+    if(questionNumber != gameQuestions.length){
+        return gameQuestions[num];
     }
-
-    console.log("got question");
-    return newQuestion;
+    else{
+        return false;
+    }
 }
 
 function displayQuestion(question){
@@ -228,6 +219,7 @@ function displayQuestion(question){
 
         if(question.ans[i].correct){
             correctAnswer = question.ans[i].choice;
+            console.log(correctAnswer);
         }
     }
 }
@@ -246,7 +238,9 @@ function endQuiz(){
 
         gameObj.over = true;
 
-        endTime = quizTime;
+        questionNumber = 0; //resets current question to start
+
+        endTime = quizTime;//stores where the user ended quiz
 
         quizTime = 60; //resets quiz time
 
