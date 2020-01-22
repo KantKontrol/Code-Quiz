@@ -78,7 +78,6 @@ document.getElementById("button-addon2").addEventListener("click", function(){
         });
     }
 
-
     window.localStorage.setItem('highscores', JSON.stringify(hsUsers));
 
     loadHighScores();
@@ -126,8 +125,6 @@ function addButtonListener(){
         buttons[i].addEventListener("click", function(){
 
             var userChoice = event.target.innerHTML;
-
-            console.log(event.target.innerHTML);
         
             if(userChoice == correctAnswer){
                 loadQuestion();
@@ -136,7 +133,6 @@ function addButtonListener(){
                 choseWrong();
                 showWrong = true;
             }
-    
         })
     }
 }
