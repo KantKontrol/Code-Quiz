@@ -41,7 +41,7 @@ var buttons = document.getElementsByClassName("qBtn");
 addButtonListener(); //adds listeners to qBtns
 setQuestionArray(); //puts questions from question.js into array
 
-displayThis(true, false, false, false);
+displayThis("block", "none", "none", "none");
 
 document.getElementById("startBtn").addEventListener("click", function(){
     startQuiz();
@@ -56,7 +56,7 @@ document.getElementById("navHighscores").addEventListener("click", function(){
 });
 
 document.getElementById("return").addEventListener("click", function(){
-    displayThis(intro, false, false, false);
+    displayThis("block", "none", "none", "none");
 });
 
 document.getElementById("button-addon2").addEventListener("click", function(){
@@ -102,7 +102,7 @@ function startQuizTimer(){
 
 function startQuiz(){
 
-    displayThis(false, true, false, false);
+    displayThis("none", "block", "none", "none");
 
     gameObj.over = false;
 
@@ -232,7 +232,7 @@ function endQuiz(){
         timerDisplay.style.color = "#4aaaa5";
 
 
-        displayThis(false, false, true, false);
+        displayThis("none", "none", "block", "none");
 }
 
 function loadHighScores(){
@@ -240,7 +240,7 @@ function loadHighScores(){
     //hides input and shows scores
     //hides quiz window to start
     //hides quiz window to start
-    displayThis(false, false, false, true);
+    displayThis("none", "none", "none", "block");
 
     document.getElementById("highscores").childNodes[3].innerHTML = "";
 
@@ -257,33 +257,10 @@ function loadHighScores(){
 
 function displayThis(intro, quiz, input, highscores){
 
-    if(intro){
-        document.getElementById("intro").style.display = "none";
-    }
-    else{
-        document.getElementById("intro").style.display = "block";
-    }
-
-    if(quiz){
-        document.getElementById("quiz").style.display = "none";
-    }
-    else{
-        document.getElementById("quiz").style.display = "block";
-    }
-
-    if(input){
-        document.getElementById("hsInput").style.display = "none";
-    }
-    else{
-        document.getElementById("hsInput").style.display = "block";
-    }
-
-    if(highscores){
-        document.getElementById("highscores").style.display = "none";
-    }
-    else{
-        document.getElementById("highscores").style.display = "block";
-    }
+        document.getElementById("intro").style.display = intro;
+        document.getElementById("quiz").style.display = quiz;
+        document.getElementById("hsInput").style.display = input;
+        document.getElementById("highscores").style.display = highscores;
 }
 
 
