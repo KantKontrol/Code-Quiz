@@ -20,6 +20,8 @@ var username = "";
 var endTime = -1;
 var questionsCompleted = 0;
 
+var bestPlayer;
+
 var hsUsers = JSON.parse(window.localStorage.getItem('highscores'));
 
 if(hsUsers == null){ //incase item doesnt exist in local storage
