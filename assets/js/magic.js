@@ -1,10 +1,4 @@
-//TODO:
-//make highscores neater and display nicer 
-//add button to remove highscores?
-//add more questions
-//add music?
-//add sound effects for right and wrong answers?
-
+//Nicholas DeRissio Code-Quiz 1/22/2020
 
 var timerDisplay = document.getElementById("timer");
 var quizTimer;
