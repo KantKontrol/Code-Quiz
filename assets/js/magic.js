@@ -20,8 +20,6 @@ var username = "";
 var endTime = -1;
 var questionsCompleted = 0;
 
-var bestPlayer;
-
 var hsUsers = JSON.parse(window.localStorage.getItem('highscores'));
 
 if(hsUsers == null){ //incase item doesnt exist in local storage
@@ -29,7 +27,6 @@ if(hsUsers == null){ //incase item doesnt exist in local storage
 }
 
 var qDisplay = document.getElementById("qAsk");
-
 var buttons = document.getElementsByClassName("qBtn");
 
 addButtonListener(); //adds listeners to qBtns
@@ -150,7 +147,6 @@ function makeGameObject(){
     for(var i = 0;i < qArray.length;i++){
 
         let cloneQObj = Object.assign({}, qArray[i]); //clones question object in qArray and stores it in gameobjec array
-
         insertToGame(cloneQObj);  
     }
 }
